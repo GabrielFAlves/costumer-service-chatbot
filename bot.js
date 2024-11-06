@@ -1,71 +1,40 @@
-const { ActivityHandler, MessageFactory, ActionTypes } = require('botbuilder');
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
-class EchoBot extends ActivityHandler {
-    constructor() {
+const { ActivityHandler } = require('botbuilder');
+
+class DialogBot extends ActivityHandler {
+    constructor(conversationState, userState, dialog) {
         super();
+        if (!conversationState) throw new Error('[DialogBot]: Missing parameter. conversationState is required');
+        if (!userState) throw new Error('[DialogBot]: Missing parameter. userState is required');
+        if (!dialog) throw new Error('[DialogBot]: Missing parameter. dialog is required');
+
+        this.conversationState = conversationState;
+        this.userState = userState;
+        this.dialog = dialog;
+        this.dialogState = this.conversationState.createProperty('DialogState');
+
         this.onMessage(async (context, next) => {
-            const command = `${ context.activity.text }`;
-            const textCommand = `Voce deseja fazer isso: ${command}`;
-            switch (command) {
-                case 'pedidos': {
-                    await context.sendActivity(MessageFactory.text(textCommand, textCommand));
-                    break;
-                }
-                case 'produtos': {
-                    await context.sendActivity(MessageFactory.text(textCommand, textCommand));
-                    break;
-                }
-                case 'extrato': {
-                    await context.sendActivity(MessageFactory.text(textCommand, textCommand));
-                    break;
-                }
-            }
-            await this.sendCard(context);
+            console.log('Running dialog with Message Activity.');
+
+            // Run the Dialog with the new message Activity.
+            await this.dialog.run(context, this.dialogState);
+
             await next();
         });
-
-        this.onMembersAdded(async (context, next) => {
-            await this.sendWelcome(context);
-            await next();
-        });
-
     }
 
-    async sendWelcome(context) {
-        const membersAdded = context.activity.membersAdded;
-        const welcomeText = 'Bem vindo ao bot, selecione no card a ação';
-        for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
-            if (membersAdded[cnt].id !== context.activity.recipient.id) {
-                await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
-                await this.sendCard(context);
-            }
-        }
+    /**
+     * Override the ActivityHandler.run() method to save state changes after the bot logic completes.
+     */
+    async run(context) {
+        await super.run(context);
+
+        // Save any state changes. The load happened during the execution of the Dialog.
+        await this.conversationState.saveChanges(context, false);
+        await this.userState.saveChanges(context, false);
     }
-
-    async sendCard(context) {
-        const cardActions = [
-            {
-                type: ActionTypes.PostBack,
-                title: 'Consultar Pedidos',
-                value: 'pedidos',
-            },
-            {
-                type: ActionTypes.PostBack,
-                title: 'Consultar Produtos',
-                value: 'produtos',
-            },
-            {
-                type: ActionTypes.PostBack,
-                title: 'Extrato de Compras',
-                value: 'extrato',
-            },
-        ];
-
-        var reply = MessageFactory.suggestedActions(cardActions, 'Como posso te ajudar?');
-        await context.sendActivity(reply);
-    }
-
-
 }
 
-module.exports.EchoBot = EchoBot;
+module.exports.DialogBot = DialogBot;
