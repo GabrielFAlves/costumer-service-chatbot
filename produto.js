@@ -9,7 +9,7 @@ class Produto {
         const headers = {
             'ocp-apim-subscription-key': '8ef0a7b573104f31bbdc17d838c76a2a'
         };
-        return await axios.get(`${this.urlApi}?productName=${productName}`, {headers: headers});
+        return await axios.get(`${this.urlApi}?productName=${productName}`, { headers: headers });
     }
     createProductCard(response) {
         return CardFactory.thumbnailCard(

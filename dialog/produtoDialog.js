@@ -1,4 +1,5 @@
 const { MessageFactory } = require('botbuilder');
+
 const {
     AttachmentPrompt,
     ChoiceFactory,
@@ -11,15 +12,16 @@ const {
     TextPrompt,
     WaterfallDialog
 } = require('botbuilder-dialogs');
+
 const { Channels } = require('botbuilder-core');
 const { ProdutoProfile } = require('../produtoProfile');
-const {Produto} = require("../produto");
+const { Produto } = require('../produto');
+const { Extrato } = require('../extrato');
 
 const NAME_PROMPT = 'NAME_PROMPT';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
 const PRODUCT_PROFILE = 'PRODUCT_PROFILE';
 const WATERFALL_DIALOG = 'WATERFALL_DIALOG';
-
 
 class ProductDialog extends ComponentDialog {
     constructor(userState) {
@@ -56,53 +58,60 @@ class ProductDialog extends ComponentDialog {
         }
     }
 
+    // Primeiro passo quando executa o programa
     async menuStep(step) {
         return await step.prompt(CHOICE_PROMPT, {
             prompt: 'Escolha a opção desejada',
-            choices: ChoiceFactory.toChoices(['Consultar Pedidos', 'Consultar Produtos', 'Extrato de Compras'])        });
+            choices: ChoiceFactory.toChoices(['Consultar Pedidos', 'Consultar Produtos', 'Extrato de Compras'])
+        });
     }
 
+    // Passo caso selecione "Consultar Produtos" ou "Extrato de Compras"
     async productNameStep(step) {
         step.values.choice = step.result.value;
 
         switch(step.values.choice) {
-            case "Consultar Pedidos":
+            case "Consultar Pedidos": {
+                return await step.prompt(NAME_PROMPT, 'Digite o número do Pedido');
+            }
             case "Extrato de Compras": {
-                return await step.prompt(NAME_PROMPT, 'Digite o seu CPF');        
+                return await step.prompt(NAME_PROMPT, 'Digite o seu CPF');
             }
             case "Consultar Produtos": {
-                return await step.prompt(NAME_PROMPT, 'Digite o nome do produto');        
+                return await step.prompt(NAME_PROMPT, 'Digite o nome do Produto');
             }
         }
     }
 
+    // Passo apos confirmar cpf e digitar o nome do produto
     async confirmStep(step) {
-
-        //Pego o input do usuario
         step.values.inputChoice = step.result;
 
         switch (step.values.choice) {
-            case "Consultar Pedidos":
+            case "Consultar Pedidos": {
+                let pedido = new Pedido();
+                let response = await pedido.getPedido(step.values.inputChoice);
+                let card = pedido.createPedidoCard(response.data[0]);
+                await step.context.sendActivity({ attachments: [card] });
+                break;
+            }
             case "Extrato de Compras": {
-                
+                let extrato = new Extrato();
+                let response = await extrato.getExtrato(step.values.inputChoice);
+                let card = extrato.createExtratoCard(response.data);
+                await step.context.sendActivity({ attachments: [card] });
+                break;
             }
             case "Consultar Produtos": {
                 let produto = new Produto();
                 let response = await produto.getProduto(step.values.inputChoice);
                 let card = produto.createProductCard(response.data[0]);
                 await step.context.sendActivity({ attachments: [card] });
-                break
+                break;
             }
-
         }
-
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
         return await step.endDialog();
     }
-
-
-
-
 }
 
 module.exports.ProductDialog = ProductDialog;
