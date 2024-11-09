@@ -14,20 +14,20 @@ const {
 } = require('botbuilder-dialogs');
 
 const { Channels } = require('botbuilder-core');
-const { ProdutoProfile } = require('../produtoProfile');
+const { mainProfile } = require('../mainProfile');
 const { Produto } = require('../produto');
 const { Extrato } = require('../extrato');
 
 const NAME_PROMPT = 'NAME_PROMPT';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
-const PRODUCT_PROFILE = 'PRODUCT_PROFILE';
+const MAIN_PROFILE = 'MAIN_PROFILE';
 const WATERFALL_DIALOG = 'WATERFALL_DIALOG';
 
-class ProductDialog extends ComponentDialog {
+class MainDialog extends ComponentDialog {
     constructor(userState) {
-        super('productDialog');
+        super('mainDialog');
 
-        this.productProfile = userState.createProperty(PRODUCT_PROFILE);
+        this.mainProfile = userState.createProperty(MAIN_PROFILE);
 
         this.addDialog(new TextPrompt(NAME_PROMPT));
         this.addDialog(new ChoicePrompt(CHOICE_PROMPT));
@@ -58,7 +58,6 @@ class ProductDialog extends ComponentDialog {
         }
     }
 
-    // Primeiro passo quando executa o programa
     async menuStep(step) {
         return await step.prompt(CHOICE_PROMPT, {
             prompt: 'Escolha a opção desejada',
@@ -66,8 +65,7 @@ class ProductDialog extends ComponentDialog {
         });
     }
 
-    // Passo caso selecione "Consultar Produtos" ou "Extrato de Compras"
-    async productNameStep(step) {
+    async firstStep(step) {
         step.values.choice = step.result.value;
 
         switch(step.values.choice) {
@@ -83,7 +81,6 @@ class ProductDialog extends ComponentDialog {
         }
     }
 
-    // Passo apos confirmar cpf e digitar o nome do produto
     async confirmStep(step) {
         step.values.inputChoice = step.result;
 
@@ -114,4 +111,4 @@ class ProductDialog extends ComponentDialog {
     }
 }
 
-module.exports.ProductDialog = ProductDialog;
+module.exports.MainDialog = MainDialog;
