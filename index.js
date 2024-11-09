@@ -78,7 +78,7 @@ const memoryStorage = new MemoryStorage();
 const conversationState = new ConversationState(memoryStorage);
 const userState = new UserState(memoryStorage);
 
-const dialog = new ProductDialog(userState);
+const dialog = new MainDialog(userState);
 const bot = new DialogBot(conversationState, userState, dialog);
 
 // Listen for incoming requests.
