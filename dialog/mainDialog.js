@@ -34,7 +34,7 @@ class MainDialog extends ComponentDialog {
 
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
             this.menuStep.bind(this),
-            this.productNameStep.bind(this),
+            this.firstStep.bind(this),
             this.confirmStep.bind(this)
         ]));
 
