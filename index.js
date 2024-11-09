@@ -21,7 +21,7 @@ const {
 
 // This bot's main dialog.
 const { DialogBot } = require('./bot');
-const { ProductDialog } = require('./dialog/produtoDialog');
+const { MainDialog } = require('./dialog/mainDialog');
 
 // Create HTTP server
 const server = restify.createServer();
