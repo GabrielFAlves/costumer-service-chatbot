@@ -17,6 +17,7 @@ const { Channels } = require('botbuilder-core');
 const { mainProfile } = require('../mainProfile');
 const { Produto } = require('../produto');
 const { Extrato } = require('../extrato');
+const { Pedido } = require('../pedidos');
 
 const NAME_PROMPT = 'NAME_PROMPT';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
