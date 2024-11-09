@@ -2,7 +2,7 @@ const axios = require('axios').default;
 const { CardFactory } = require('botbuilder');
 
 class Pedido {
-    urlApi = 'http://localhost:8080/pedidos';
+    urlApi = 'http://localhost:8080/orders';
 
     constructor(context) {
         this.context = context;
@@ -22,7 +22,7 @@ class Pedido {
             [],
             {
                 subtitle: `Status: ${response.status}`,
-                text: `ID do Produto: ${response.productId}\nID do Usuário: ${response.userId}\nData do Pedido: ${response.orderDate}`
+                text: `ID do Produto: ${response.productId}\nID do Usuário: ${response.accountId}\nData do Pedido: ${response.dataOrder}`
             }
         );
     }
