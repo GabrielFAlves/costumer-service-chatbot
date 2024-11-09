@@ -84,11 +84,17 @@ class MainDialog extends ComponentDialog {
 
     async confirmStep(step) {
         step.values.inputChoice = step.result;
-
+    
         switch (step.values.choice) {
             case "Consultar Pedidos": {
                 let pedido = new Pedido();
                 let response = await pedido.getPedido(step.values.inputChoice);
+    
+                if (!response || !response.data || response.data.length === 0) {
+                    await step.context.sendActivity('Pedido não encontrado. Por favor, tente novamente.');
+                    return await step.replaceDialog(WATERFALL_DIALOG);
+                }
+    
                 let card = pedido.createPedidoCard(response.data[0]);
                 await step.context.sendActivity({ attachments: [card] });
                 break;
@@ -96,6 +102,12 @@ class MainDialog extends ComponentDialog {
             case "Extrato de Compras": {
                 let extrato = new Extrato();
                 let response = await extrato.getExtrato(step.values.inputChoice);
+    
+                if (!response || !response.data || response.data.length === 0) {
+                    await step.context.sendActivity('Extrato não encontrado. Por favor, tente novamente.');
+                    return await step.replaceDialog(WATERFALL_DIALOG);
+                }
+    
                 let card = extrato.createExtratoCard(response.data);
                 await step.context.sendActivity({ attachments: [card] });
                 break;
@@ -103,6 +115,12 @@ class MainDialog extends ComponentDialog {
             case "Consultar Produtos": {
                 let produto = new Produto();
                 let response = await produto.getProduto(step.values.inputChoice);
+    
+                if (!response || !response.data || response.data.length === 0) {
+                    await step.context.sendActivity('Produto não encontrado. Por favor, tente novamente.');
+                    return await step.replaceDialog(WATERFALL_DIALOG);
+                }
+    
                 let card = produto.createProductCard(response.data[0]);
                 await step.context.sendActivity({ attachments: [card] });
                 break;
@@ -110,6 +128,7 @@ class MainDialog extends ComponentDialog {
         }
         return await step.endDialog();
     }
+    
 }
 
 module.exports.MainDialog = MainDialog;

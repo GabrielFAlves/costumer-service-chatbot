@@ -1,5 +1,52 @@
-# ibmec-bot
+# Documentação do Chatbot
 
+## Visão Geral
+Este chatbot oferece funcionalidades para consultar produtos, verificar pedidos e visualizar extratos de compras. Abaixo estão as instruções e detalhes para cada tipo de consulta.
+
+### 1. Consulta de Produtos
+Para consultar os produtos disponíveis, você precisa digitar o nome de um dos produtos listados abaixo. O chatbot responderá com os detalhes do produto, se disponível.
+
+**Lista de Produtos Disponíveis:**
+
+| Nome do Produto |
+|-----------------|
+| Smart TV Crystal Samsung 50 |
+| Notebook Acer Aspire 5 |
+| Câmera GoPro HERO11 |
+| Fone de Ouvido Bluetooth JBL Tune 750 |
+|Jogo de Facas Zwilling Pro |
+|Frigideira Tramontina |
+|Diario de um Banana |
+|O Alquimista|
+|1984|
+
+### 2. Consulta de Pedidos
+Para consultar um pedido, é necessário fornecer o ID do pedido. O chatbot retornará os detalhes correspondentes.
+
+**Lista de IDs de Pedidos Disponíveis:**
+
+| ID do Pedido |
+|--------------|
+| 46a0b15e-1b5d-471e-8266-132ef37608cb |
+
+### 3. Extrato de Compras
+Para acessar o extrato de compras, é necessário o ID do usuário. O chatbot fornecerá o histórico de compras do usuário especificado.
+
+**Lista de IDs de Usuários Disponíveis:**
+
+| ID do Usuário |
+|---------------|
+| 123.456.789-23 |
+
+## Como Usar
+- **Consulta de Produtos**: Digite o nome do produto que deseja consultar.
+- **Consulta de Pedidos**: Forneça o ID do pedido para recuperar os detalhes do pedido.
+- **Extrato de Compras**: Insira o ID do usuário para visualizar o extrato de compras.
+
+
+------
+
+# Bot Configuration
 Demonstrate the core capabilities of the Microsoft Bot Framework
 
 This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
