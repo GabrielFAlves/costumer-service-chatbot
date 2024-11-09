@@ -3,7 +3,7 @@ const { CardFactory } = require('botbuilder');
 
 class Produto {
 
-    urlApi = 'http://localhost:8080/products';
+    urlApi = 'http://kudus-bgg5cke0e5bkgch4.centralus-01.azurewebsites.net/products';
 
     async getProduto(productName) {
         const headers = {

@@ -2,7 +2,7 @@ const axios = require('axios').default;
 const { CardFactory } = require('botbuilder');
 
 class Pedido {
-    urlApi = 'http://localhost:8080/orders';
+    urlApi = 'http://kudus-bgg5cke0e5bkgch4.centralus-01.azurewebsites.net/orders';
 
     constructor(context) {
         this.context = context;

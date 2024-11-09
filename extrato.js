@@ -3,7 +3,7 @@ const { CardFactory } = require('botbuilder');
 
 class Extrato {
 
-    urlApi = 'http://localhost:8080/purchases';
+    urlApi = 'http://kudus-bgg5cke0e5bkgch4.centralus-01.azurewebsites.net/purchases';
 
     constructor(context) {
         this.context = context;
