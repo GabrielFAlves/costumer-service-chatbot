@@ -15,7 +15,7 @@ class Produto {
         return CardFactory.thumbnailCard(
             response.productName,
             [{ url: response.urlFoto }],
-            [],
+            ["Continuar"],
             {
                 subtitle: `Preço do produto: ${response.price}`,
                 text: response.productDescription

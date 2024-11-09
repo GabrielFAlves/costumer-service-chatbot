@@ -19,10 +19,10 @@ class Pedido {
         return CardFactory.thumbnailCard(
             `Pedido de Compras: ${response.orderId}`,
             [],
-            [],
+            ["Continuar"],
             {
                 subtitle: `Status: ${response.status}`,
-                text: `ID do Produto: ${response.productId}\nID do Usuário: ${response.accountId}\nData do Pedido: ${response.dataOrder}`
+                text: `ID do Produto: ${response.productId} \n\n\n\n ID do Usuário: ${response.accountId} \n\n\n\n Data do Pedido: ${response.dataOrder}`
             }
         );
     }

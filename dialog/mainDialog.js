@@ -95,7 +95,7 @@ class MainDialog extends ComponentDialog {
                     return await step.replaceDialog(WATERFALL_DIALOG);
                 }
     
-                let card = pedido.createPedidoCard(response.data[0]);
+                let card = pedido.createPedidoCard(response.data);
                 await step.context.sendActivity({ attachments: [card] });
                 break;
             }
