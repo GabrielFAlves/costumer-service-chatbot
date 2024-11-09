@@ -10,15 +10,15 @@ Para consultar os produtos disponíveis, você precisa digitar o nome de um dos 
 
 | Nome do Produto |
 |-----------------|
-| Smart TV Crystal Samsung 50 |
+| Smart TV Crystal Samsung 50 | 
 | Notebook Acer Aspire 5 |
 | Câmera GoPro HERO11 |
 | Fone de Ouvido Bluetooth JBL Tune 750 |
-|Jogo de Facas Zwilling Pro |
-|Frigideira Tramontina |
-|Diario de um Banana |
-|O Alquimista|
-|1984|
+| Jogo de Facas Zwilling Pro |
+| Frigideira Tramontina |
+| Diário de um Banana |
+| O Alquimista|
+| 1984|
 
 ### 2. Consulta de Pedidos
 Para consultar um pedido, é necessário fornecer o ID do pedido. O chatbot retornará os detalhes correspondentes.
@@ -28,6 +28,10 @@ Para consultar um pedido, é necessário fornecer o ID do pedido. O chatbot reto
 | ID do Pedido |
 |--------------|
 | 46a0b15e-1b5d-471e-8266-132ef37608cb |
+| b11bc5d7-544d-4693-9a64-25c60c91aed7 |
+| 4455e76f-64e9-43f3-884a-ab51a2c7855c |
+| ece9b7cb-95ed-4ebb-a520-177a257df960 |
+| d50abb95-066c-4218-8967-9f78db2d5cb5 |
 
 ### 3. Extrato de Compras
 Para acessar o extrato de compras, é necessário o ID do usuário. O chatbot fornecerá o histórico de compras do usuário especificado.
@@ -37,6 +41,10 @@ Para acessar o extrato de compras, é necessário o ID do usuário. O chatbot fo
 | ID do Usuário |
 |---------------|
 | 123.456.789-23 |
+| 285.098.820-02 |
+| 025.482.870-17 |
+| 498.419.930-07 |
+| 530.645.750-90 |
 
 ## Como Usar
 - **Consulta de Produtos**: Digite o nome do produto que deseja consultar.
