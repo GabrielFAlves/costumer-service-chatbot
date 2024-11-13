@@ -17,11 +17,13 @@ class Extrato {
     }
 
     createExtratoCard(response) {
-        // Construir uma string com todas as transações
-        console.log(response);
-        const transactions = response.extractList.map(extract => 
-            `- **Data**: ${extract.date}\n  **Descrição**: ${extract.description}\n  **Valor**: ${extract.amount} R$\n  **Saldo**: ${extract.balance} R$`
-        ).join('\n\n');
+        const transactionsTable = response.extractList && response.extractList.length > 0 
+            ? `| Data       | Descrição                 | Valor (R$) | Saldo (R$) |\n` +
+              `|------------|--------------------------|------------|------------|\n` +
+              response.extractList.map(extract => 
+                `| ${extract.date} | ${extract.description} | ${extract.amount}      | ${extract.balance}      |`
+              ).join('\n')
+            : "Nenhuma transação encontrada.";
 
         return CardFactory.thumbnailCard(
             "Extrato de Compras",
@@ -29,7 +31,7 @@ class Extrato {
             ["Continuar"],
             {
                 subtitle: `Total Gasto: ${response.totalSpent} R$\nÚltima Compra: ${response.lastPurchase}`,
-                text: `ID Usuário: ${response.accountId}\n\n**Transações:**\n\n${transactions}`
+                text: `ID Usuário: ${response.accountId}\n\n**Transações:**\n\n${transactionsTable}`
             }
         );
     }
