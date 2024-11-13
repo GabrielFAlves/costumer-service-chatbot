@@ -17,13 +17,19 @@ class Extrato {
     }
 
     createExtratoCard(response) {
+        // Construir uma string com todas as transações
+        console.log(response);
+        const transactions = response.extractList.map(extract => 
+            `- **Data**: ${extract.date}\n  **Descrição**: ${extract.description}\n  **Valor**: ${extract.amount} R$\n  **Saldo**: ${extract.balance} R$`
+        ).join('\n\n');
+
         return CardFactory.thumbnailCard(
-            `Extrato de Compras`,
-            [{url: "https://static.vecteezy.com/system/resources/previews/005/129/844/non_2x/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg"}],
+            "Extrato de Compras",
+            [{ url: "https://static.vecteezy.com/system/resources/previews/005/129/844/non_2x/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg" }],
             ["Continuar"],
             {
-                subtitle: `Total Gasto: ${response.totalSpent} R$ \n\n\n\n\n\n\n Última Compra: ${response.lastPurchase}`,
-                text: `ID Usuário: ${response.accountId}`
+                subtitle: `Total Gasto: ${response.totalSpent} R$\nÚltima Compra: ${response.lastPurchase}`,
+                text: `ID Usuário: ${response.accountId}\n\n**Transações:**\n\n${transactions}`
             }
         );
     }
