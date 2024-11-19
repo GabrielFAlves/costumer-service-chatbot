@@ -8,17 +8,18 @@ Para consultar os produtos disponíveis, você precisa digitar o nome de um dos 
 
 **Lista de Produtos Disponíveis:**
 
-| Nome do Produto |
-|-----------------|
-| Smart TV Crystal Samsung 50 | 
-| Notebook Acer Aspire 5 |
-| Câmera GoPro HERO11 |
-| Fone de Ouvido Bluetooth JBL Tune 750 |
-| Jogo de Facas Zwilling Pro |
-| Frigideira Tramontina |
-| Diário de um Banana |
-| O Alquimista|
-| 1984|
+| Nome do Produto | _productId_ |
+|----------------- |----------------- |
+| Smart TV Crystal Samsung 50 | 7520fbf1-2e43-40f6-8c0e-da2f0e579fa5 |
+| Notebook Acer Aspire 5 | d9b0fa89-a1d7-40f8-bbf9-b45575a25c06 |
+| iPhone 14 Pro Max | 56771986-6a6a-49f6-899e-f352fceeee09 |
+| Câmera GoPro HERO11 | 4682c86a-d0d9-48c2-9d00-9119c3c5d8a5 |
+| Fone de Ouvido Bluetooth JBL Tune 750 | 6faf4ca1-e2eb-4b1b-b3a1-bb6e006c4495 |
+| Jogo de Facas Zwilling Pro | bce65884-f4c6-491f-a6c2-68c0c5e5770f |
+| Frigideira Tramontina | 0a2dc639-850e-43f7-8a0c-254767bd27c5 |
+| Diário de um Banana | 0a2080fd-7bdc-4027-bef4-180873e21415 |
+| O Alquimista| 673025e5-c7eb-47c8-9f60-342bb89570cc |
+| 1984 | e49886be-afb1-470d-b849-efae69727fd2 |
 
 ### 2. Consulta de Pedidos
 Para consultar um pedido, é necessário fornecer o ID do pedido. O chatbot retornará os detalhes correspondentes.
