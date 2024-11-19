@@ -17,7 +17,7 @@ class Pedido {
 
     createPedidoCard(response) {
         return CardFactory.thumbnailCard(
-            `Pedido de Compras: ${response.orderId}`,
+            `Pedido de Compras: ${response.productName}`,
             [],
             ["Continuar"],
             {
