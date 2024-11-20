@@ -1,5 +1,10 @@
 # Documentação do Chatbot
 
+## Equipe
+- Guilherme Firmeza
+- Gustavo Raia
+- Gabriel Firmamento
+
 ## Visão Geral
 Este chatbot oferece funcionalidades para consultar produtos, verificar pedidos e visualizar extratos de compras. Abaixo estão as instruções e detalhes para cada tipo de consulta.
 

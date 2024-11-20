@@ -106,18 +106,25 @@ class MainDialog extends ComponentDialog {
                 break;
             }
             case "Extrato de Compras": {
-                let extrato = new Extrato();
-                let response = await extrato.getExtrato(step.values.inputChoice);
-
-                if (!response || !response.data || response.data.length === 0) {
-                    await step.context.sendActivity('Extrato não encontrado. Por favor, tente novamente.');
+                const extrato = new Extrato();
+                let response;
+                
+                try {
+                    response = await extrato.getUsuario(step.values.inputChoice);
+                } catch (error) {
+                    await step.context.sendActivity('Ocorreu um erro ao processar a solicitação. Por favor, tente novamente mais tarde.');
                     return await step.replaceDialog(WATERFALL_DIALOG);
                 }
-
-                let card = extrato.createExtratoCard(response.data);
+            
+                if (!response) {
+                    await step.context.sendActivity('Não foram encontrados dados para este CPF. Por favor, verifique e tente novamente.');
+                    return await step.replaceDialog(WATERFALL_DIALOG);
+                }
+            
+                const card = extrato.createExtratoCard(response);
                 await step.context.sendActivity({ attachments: [card] });
                 break;
-            }
+            }            
             case "Consultar Produtos": {
                 let produto = new Produto();
                 let response = await produto.getProduto(step.values.inputChoice);
