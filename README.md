@@ -47,7 +47,7 @@ Para acessar o extrato de compras, é necessário o ID do usuário. O chatbot fo
 
 | ID do Usuário |
 |---------------|
-| 123.456.789-23 |
+| 123.456.789-09 |
 | 285.098.820-02 |
 | 025.482.870-17 |
 | 498.419.930-07 |
